@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"></link>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <title></title>
+  </head>
+  <body>
+
+
+    <div id="app">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Bank Service</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Sign up <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Login</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <!--creare un nuovo account -->
+      <div class="row">
+        <div class="offset-md-1 signupLogin" >
+          <div class="offset-md-1">
+            <p style="text-transform:uppercase;">Sign up</p>
+            Name :<br>
+            <input v-model=newAccount.name type="text" ><br>
+            Surname :<br>
+            <input v-model=newAccount.surname type="text" ><br>
+            Email :<br>
+            <input v-model=newAccount.email type="text"><br>
+            Password :<br>
+            <input v-model=newAccount.password type="password" ><br>
+            Count :<br>
+            <input v-model.number=newAccount.count type="number" ><br>
+            <button class="badge badge-success" type="button" name="button" @click='signup'>Sign up</button>
+          </div>
+        </div>
+
+<!--loggare l'utente -->
+        <div class="row">
+          <div class="offset-md-3">
+          <p style="text-transform:uppercase;">Login</p>
+          Email:<br/>
+          <input v-model='newAccount.email' type="text" style="width:150px; height:20px;"><br />
+          Password:<br/>
+          <input v-model=newAccount.password  type="password" name="" value="" style="width:150px; height:20px;"><br />
+          <button class="badge badge-success" @click='login' style="cursor:pointer;">Login</button>
+        </div>
+
+        </div>
+        <!--utente loggato -->
+        <div class="utenteLoggato offset-md-1">
+          <div v-if='currentAccount' class="" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="welcome "><b>Benvenuto {{currentAccount.name}} {{currentAccount.surname}}</b></h5>
+              <b>Email: </b>{{currentAccount.email}} <br> <b>IBAN: </b> {{currentAccount.iban}}<br>
+              <span class="badge badge-primary" style="cursor:pointer;">Count: {{currentAccount.count}}</span>
+              <span class="badge badge-primary" style="cursor:pointer;">Transaction sended: {{currentAccount.transSend.length}}</span>
+              <span class="badge badge-success" style="cursor:pointer;">Transaction recived: {{currentAccount.transRecived.length}}</span>
+              <button @click='logout' class="badge badge-danger" style="margin-top:30px; cursor:pointer">Logout</button>
+              <p style="text-transform:uppercase;">Create Transaction</p>
+              IBAN:<br/>
+              <input v-model='newTrans.iban' type="text" style="width:150px; height:20px;"><br />
+              Amount:<br/>
+              <input v-model.number='newTrans.amount'  type="number" style="width:150px; height:20px;"><br />
+              <button @click='createTransaction' class="badge badge-success" style="margin-top:30px; cursor:pointer">Create</button>
+            </div>
+          </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Transactions</h6>
+          <p v-for='singleTrans in singleTrans'>
+            {{singleTrans.transSend}}
+            </p>
+          </div>
+      </div>
+    </div>
+<!--Transazioni dell'utente loggato -->
+
+
+
+
+        </div>
+
+
+
+
+
+
+  </body>
+  <script src="../bower_components/vue/dist/vue.min.js"></script>
+  <script src="../bower_components/vue-resource/dist/vue-resource.min.js"></script>
+  <script type="text/javascript" src="../public/js/app.js">
+
+  </script>
+</html>
